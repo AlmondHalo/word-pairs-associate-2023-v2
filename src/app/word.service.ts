@@ -6,13 +6,12 @@ import { AddWord } from './add-word';
 // interface wordList {
 //   [key: string]: object
 // }
-
+console.log("Word Service Start: ");
 @Injectable({ providedIn: 'root' })
 export class WordService {
 
   private lists :any = [];
   
-
   constructor() {
     this.lists['one'] = [
       { prompt: 'tower', answer: 'bell' },
@@ -237,6 +236,28 @@ export class WordService {
       { prompt: 'skin', answer: 'blood' },
       { prompt: 'garden', answer: 'flowerbed' }
     ];
+
+    // TODO: Work on csv added changes (WORK IN PROGRESS)
+    this.lists['test-csv'] = [];
+    console.log("Staring parsing:");
+    this.parseCSVList("test_csv.csv");
+    // End of changes (WORK IN PROGRESS)
+  }
+  // TODO: Pertains to working csv reading changes
+  // Decoupling this function by making a separate parse 'object'
+  parseCSVList(csvPath : string) {
+    console.log("Parsing...");
+    const fs = require("fs");
+    const { parse } = require("csv-parse");
+    fs.createReadStream(csvPath)
+      .pipe(parse({ delimiter: ";", from_line: 2}))
+      .on("data", function (row: any) {
+        console.log(row);
+      })
+      .on ("error", function (error: any) {
+        console.log(error);
+      });
+      console.log("Parsing Ended");
   }
 
   getWordList(listName : any) {
@@ -251,3 +272,5 @@ export class WordService {
     return listObject;
   }
 }
+// TODO: Try printing all elem here
+console.log("Word Service End");
