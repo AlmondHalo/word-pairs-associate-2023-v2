@@ -2,11 +2,31 @@ import { Injectable } from '@angular/core';
 import { WordListComponent } from './lits1/word-list.component';
 import { AddWord } from './add-word';
 
+console.log("Word Service Start: ");
+
+function parseCSVList(csvPath : string) {
+  let csvList: any[] = [];
+  
+  console.log("Parsing...");
+  
+  let fs = require("fs");
+  let { parse } = require("csv-parse/sync");
+  fs.createReadStream(csvPath);
+    // .pipe(parse({ delimiter: ";", from_line: 2}))
+    // .on("data", function (row: any) {
+    //   console.log(row + "\n");
+    //   csvList.push(row);
+    // })
+    // .on ("error", function (error: any) {
+    //   console.log(error);
+    // });
+  console.log("Parsing Ended");
+}
+parseCSVList("test_csv.csv");
 
 // interface wordList {
 //   [key: string]: object
 // }
-console.log("Word Service Start: ");
 @Injectable({ providedIn: 'root' })
 export class WordService {
 
@@ -246,18 +266,23 @@ export class WordService {
   // TODO: Pertains to working csv reading changes
   // Decoupling this function by making a separate parse 'object'
   parseCSVList(csvPath : string) {
+    let csvList: any[] = [];
+  
     console.log("Parsing...");
-    const fs = require("fs");
-    const { parse } = require("csv-parse");
+    
+    let fs = require("fs");
+    let { parse } = require("csv-parse/sync");
     fs.createReadStream(csvPath)
       .pipe(parse({ delimiter: ";", from_line: 2}))
       .on("data", function (row: any) {
         console.log(row);
+        csvList.push(row);
       })
       .on ("error", function (error: any) {
         console.log(error);
       });
-      console.log("Parsing Ended");
+    console.log("Parsing Ended");
+    return csvList;
   }
 
   getWordList(listName : any) {
