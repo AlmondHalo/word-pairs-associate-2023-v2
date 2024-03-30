@@ -5,8 +5,8 @@ import { AddWord } from '../add-word';
 import { WordComponent } from '../word.component';
 import { WordDirective } from '../word.directive';
 import { Router } from '@angular/router';
-import { AppModule } from '../app.module'; // yoannes
-import Swal from 'sweetalert2'; // yoannes
+import { AppModule } from '../app.module';
+import Swal from 'sweetalert2';
 import { WordService } from '../word.service';
 
 
@@ -29,7 +29,6 @@ export class WordAssociateInputComponent implements OnInit{
   numberCorrectPairs = 0;
   percentage = 0;
   numberOfWords = 40;
-  sleepinessRating: number = 0; // Default to 1
   inputElement: HTMLInputElement | undefined;
 
   current_date = this.getISOStringWithTimezone(); 
@@ -38,9 +37,10 @@ export class WordAssociateInputComponent implements OnInit{
   indexArray: number[] = [];
   answerArray: string[] = [];
   binaryArray: number[] = [];
-  // wordsInputToHeaderStr () {
-    
-  // }
+
+  // property to store sleepiness rating
+  sleepinessRating: number = 1; // Default to 1
+
 
   constructor(private router: Router,private globalService: AppModule,private wordService: WordService){}
 
@@ -124,28 +124,6 @@ export class WordAssociateInputComponent implements OnInit{
        }, 10000, this.currentWord);
     }
   }
-  //set the interval to minutes 
-  // getWordsInputOne() {
-  //   this.interval = window.setInterval(() => {
-  //     this.loadComponent();
-  //   }, 11000);//(11000) User has 11 seconds to fill in the blank yoannes time
-  // }
-
-  // handleTimeout (expectedCurrentWord: string) {
-  //    // If the list has moved to the next word, or an answer has been submitted for the current word, do nothing.
-  //   if(this.currentWord == expectedCurrentWord && this.inputElement?.disabled == false) {
-  //     if( (Date.now() - this.lastTypedTime)/1000 > 2){
-  //       setTimeout((expectedCurrentWord) => {
-  //         this.handleTimeout(expectedCurrentWord);
-  //        }, 2000, this.currentWord);
-  //     } else {
-  //       this.onEnter(this.currentWord,this.correctWord, this.inputElement!.value);
-  //     }
-  //   }
-
-  // }
-
-
   
 
   handleTimeout(expectedCurrentWord: string) {
@@ -193,14 +171,14 @@ export class WordAssociateInputComponent implements OnInit{
     this.binaryArray[this.currentWordIndex] = (correctWord.toLowerCase() === myUserInput) ? 1 : 0;
 
     if (correctWord.toLowerCase() === myUserInput) {
-      // yoannes, checking time to print message if its evening
+      // checking time to print message if its evening
       if (AppModule.trainingTesting == "training") {
         this.correctMessage = "Correct answer"
       }
       this.numCorrect++;
     }
     else /* if (myUserInput != correctWord) */ {
-    //   // yoannes, checking time to print message if its
+    // checking time to print message if its
       if (AppModule.trainingTesting == "training") {
         this.errorMessage = "The correct word is <b>" + correctWord+"</b>"; 
       }
@@ -216,8 +194,8 @@ export class WordAssociateInputComponent implements OnInit{
       setTimeout(() => {
         // Only progress if this is the last word
       if (this.counter == this.numberOfWords) {
-        this.numberCorrectPairs = this.numCorrect                 //yoannes
-        this.percentage = (this.numCorrect * 100)/this.numberOfWords              //yoannes
+        this.numberCorrectPairs = this.numCorrect
+        this.percentage = (this.numCorrect * 100)/this.numberOfWords
 
         if(AppModule.trainingTesting == "testing"){
           this.createCSVFile();  
@@ -274,7 +252,7 @@ export class WordAssociateInputComponent implements OnInit{
     }
   }
 
-  // Function that creates the .CSV file //yoannes
+  // Function that creates the .CSV file 
   createCSVFile() {
     let studyID = AppModule.globalVariable;
     let numberOfWords = this.numberOfWords;
