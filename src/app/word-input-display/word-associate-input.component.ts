@@ -29,6 +29,7 @@ export class WordAssociateInputComponent implements OnInit{
   numberCorrectPairs = 0;
   percentage = 0;
   numberOfWords = 40;
+  sleepinessRating: number = 0; // Default to 1
   inputElement: HTMLInputElement | undefined;
 
   current_date = this.getISOStringWithTimezone(); 
@@ -143,6 +144,9 @@ export class WordAssociateInputComponent implements OnInit{
   //   }
 
   // }
+
+
+  
 
   handleTimeout(expectedCurrentWord: string) {
     const typingTimeout = 1000; // 2 seconds

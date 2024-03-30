@@ -2,22 +2,72 @@
   <h6>Please press ENTER after you type your word</h6>
   <div id="input-prompt-row">
     <label class="message">{{currentWord}} - </label>
-    <!-- <input disable-on-enter id="userInputs"  
-                (keyup.enter)="onEnter(currentWord,correctWord,userInputs.value)" -->
     <input #userInputs disable-on-enter id="userInputs" 
-            type="text" spellcheck=true 
-            name="userInputs"
-
-            autocomplete="off"
-            (keyup)="onKeyUp($event)"
-            (click)="$event.stopPropagation()"
-            required
-            >
+           type="text" spellcheck="true" 
+           name="userInputs"
+           autocomplete="off"
+           (keyup)="onKeyUp($event)"
+           (click)="$event.stopPropagation()"
+           required>
   </div>
-   <span class="outputMessage" style="color: red; text-align: center;">
+  <span class="outputMessage" style="color: red; text-align: center;">
     <div [innerHtml]="errorMessage"></div>
-   </span> 
-   <span class="correctMessage" style="color: blue; text-align: center;">
+  </span> 
+  <span class="correctMessage" style="color: blue; text-align: center;">
     <div>{{correctMessage}}</div>
-   </span>
+  </span>
+
+  <!-- SSS elements -->
+  <div>
+    <p>Using the 7-point scale below, pick what best represents how you are feeling:</p>
+    <p>Degree of Sleepiness</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Scale Rating</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Feeling active, vital, alert, or wide awake</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Functioning at high levels, but not fully alert</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Awake, but relaxed; responsive but not fully alert</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Slightly foggy, let down</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Foggy, beginning to lose interest in remaining awake, slowed down</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Sleepy, woozy, fighting sleep; prefer to lie down</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Almost in reverie, sleep onset soon; lost struggle to remain awake</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Please rate your sleepiness level on a 7-point scale:</p>
+    <select [(ngModel)]="sleepinessRating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+  </div>
 </form>
