@@ -1,0 +1,43 @@
+/* Define styles for the SSS table */
+.sss-table {
+    width: 80%; /* Reduce the width to 80% of its container to prevent overflow */
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse; /* Collapse border spacing between table cells */
+    margin-bottom: 20px; /* Add some space below the table */
+  }
+  
+  .sss-table th,
+  .sss-table td {
+    border: 1px solid #ccc; /* Add border to table headers and cells */
+    padding: 8px; /* Add padding to provide space inside table cells */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .sss-table th {
+    background-color: #f2f2f2; /* Light gray background color for table headers */
+    font-weight: bold; /* Make table headers bold */
+  }
+
+  .sss-table td:first-child {
+    width: 20%; /* Set the width of the first column to 20% */
+    max-width: 100px; /* Limit the maximum width of the first column */
+  }
+  
+  /* Additional styles for the 404 page */
+  .page-not-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* Set height to 90% of the viewport height */
+  }
+  
+  .error-header {
+    font-size: 24px;
+    color: red;
+  }
+  
+  .error-message {
+    font-size: 18px;
+    color: #333;
+  }

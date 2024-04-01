@@ -184,7 +184,9 @@ export class WordAssociateInputComponent implements OnInit{
       }
       this.numError++;
     }
-
+    
+    // handle sleepiness rating
+    console.log('Sleepiness Rating:', this.sleepinessRating);
     
     //Wait then move to next word. 
     let loadTime = 1000; // 1 second if testing
