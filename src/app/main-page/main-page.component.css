@@ -5,7 +5,7 @@
   
   .main-content-nav {
     list-style-type: none;
-    padding: 0;
+    padding: 5vh;
     column-count: 2; /* Set the number of columns to 2 */
   }
   
@@ -17,9 +17,5 @@
     color: red;
   }
   
-  @media screen and (min-width: 768px) {
-    .main-content-nav {
-      column-count: 1; /* Revert to single column for screens wider than 768px (desktop) */
-    }
-  }
+
   
